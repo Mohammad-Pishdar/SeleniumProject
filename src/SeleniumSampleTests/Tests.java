@@ -1,9 +1,6 @@
 package SeleniumSampleTests;
 
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -127,6 +124,18 @@ public class Tests {
             System.out.println("Alert text does not match the input text");
         }
         alert2.accept();
+
+        //Chapter 8 Link Tests
+        driver.findElement(By.cssSelector("#index")).click();
+        driver.findElement(By.linkText("Chapter8")).click();
+
+        //1: Test cookies
+        Set <Cookie> ck = driver.manage().getCookies();
+        System.out.println("First cookie is: " + ck.toString());
+        driver.findElement(By.cssSelector("#secondCookie")).click();
+        driver.navigate().refresh();
+        Set <Cookie> ck2 = driver.manage().getCookies();
+        System.out.println("Cookie button is pressed: \n The first cookie is now updated:\n and the second cooke also added:\n " + ck2.toString());
 
 
 
