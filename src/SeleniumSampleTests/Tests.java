@@ -125,7 +125,7 @@ public class Tests {
         }
         alert2.accept();
 
-        //Chapter 8 Link Tests
+        //Chapter 8 Link Tests----------------------------------------------------------------------------
         driver.findElement(By.cssSelector("#index")).click();
         driver.findElement(By.linkText("Chapter8")).click();
 
