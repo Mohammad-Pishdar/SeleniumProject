@@ -1,9 +1,11 @@
 package SeleniumSampleTests;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -99,6 +101,18 @@ public class Tests {
         //3: Find an element using its preceding sibling
         WebElement sibling = driver.findElement(By.xpath("//input[@id=\"but1\"]/following-sibling::input"));
         System.out.println("The value attribute of sibling button reads: " + sibling.getAttribute("value"));
+
+        //Chapter 4 link tests----------------------------------------------------------------------------------------
+        driver.findElement(By.linkText("Index")).click();
+        driver.findElement(By.linkText("Chapter4")).click();
+
+        //1: Test a mouse hover element
+        WebElement hoverElement = driver.findElement(By.cssSelector("#hoverOver"));
+        Actions act = new Actions(driver);
+        act.moveToElement(hoverElement).perform();
+        Alert alert = driver.switchTo().alert();
+        String alertText = alert.getText();
+        System.out.println("The alert text was: " + alertText);
 
 
         driver.quit();
