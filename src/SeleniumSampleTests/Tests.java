@@ -113,6 +113,23 @@ public class Tests {
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
         System.out.println("The alert text was: " + alertText);
+        alert.accept();
+
+        //2: Test a button that sends an input field value to be alerted
+        WebElement inputField = driver.findElement(By.cssSelector("#blurry"));
+        inputField.sendKeys("Selenium test");
+        driver.findElement(By.cssSelector("#selectLoad")).click();
+        Alert alert2 = driver.switchTo().alert();
+        String alert2Text = alert2.getText();
+        if(alert2Text.equals("Selenium test")) {
+            System.out.println("The input test was successfully shown on alert");
+        } else {
+            System.out.println("Alert text does not match the input text");
+        }
+        alert2.accept();
+
+
+
 
 
         driver.quit();
