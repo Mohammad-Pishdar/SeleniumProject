@@ -26,7 +26,7 @@ public class Tests {
         String expectedHeaderText = "Selenium: Beginners Guide";
         Assert.assertEquals(headerText, expectedHeaderText);
 
-        //chapter 1 link tests
+        //chapter 1 link tests----------------------------------------------------------------------------
         driver.findElement(By.linkText("Chapter1")).click();
 
         //1: Asserting that chapter1 specific text is on the page per instructions
@@ -76,6 +76,22 @@ public class Tests {
         } else {
             System.out.println("Ajax text is not displayed!");
         }
+
+        //Chapter 2 link tests-----------------------------------------------------------------------------------
+        driver.findElement(By.linkText("Home Page")).click();
+        driver.findElement(By.linkText("Chapter2")).click();
+
+        //1: Identify an element with a dynamically created id upon each refresh
+        for (int i = 0; i < 2; i++) {
+            WebElement dynamicElement = driver.findElement(By.xpath("//div[contains(@id, 'time')]"));
+            if(dynamicElement.isDisplayed()){
+                System.out.println("Found element with dynamic id on page");
+            } else {
+                System.out.println("Cannot find element with dynamic id on page");
+            }
+            driver.navigate().refresh();
+        }
+
 
 
 
