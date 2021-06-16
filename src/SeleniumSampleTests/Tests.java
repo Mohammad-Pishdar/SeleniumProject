@@ -23,16 +23,24 @@ public class Tests {
         //chapter 1 link tests
         driver.findElement(By.linkText("Chapter1")).click();
 
-        //Asserting that chapter1 specific text is on the page per instructions
+        //1: Asserting that chapter1 specific text is on the page per instructions
         WebElement chapter1PageHeader = driver.findElement(By.cssSelector("#divontheleft"));
         String chapter1PageHeaderText = chapter1PageHeader.getText();
         String expectedChapter1PageHeaderText = "Assert that this text is on the page";
         Assert.assertEquals(chapter1PageHeaderText, expectedChapter1PageHeaderText);
 
-        //1: test dropdown menu by selecting an item from it
+        //2: test dropdown menu by selecting an item from it
         Select dropdown = new Select(driver.findElement(By.cssSelector("#selecttype")));
         dropdown.selectByVisibleText("Selenium Grid");
         dropdown.selectByVisibleText("Selenium Core");
+
+        //3: Verifying that the button is there on page
+        WebElement verifyButton = driver.findElement(By.cssSelector("#verifybutton"));
+        if(verifyButton.isDisplayed()) {
+            System.out.println("Verify button is there");
+        } else {
+            System.out.println("Verify button is not displayed");
+        }
 
 
 
