@@ -96,7 +96,9 @@ public class Tests {
         driver.findElement(By.name("but2"));
         System.out.println("Button with a name attribute was found on Chapter2 page");
 
-
+        //3: Find an element using its preceding sibling
+        WebElement sibling = driver.findElement(By.xpath("//input[@id=\"but1\"]/following-sibling::input"));
+        System.out.println("The value attribute of sibling button reads: " + sibling.getAttribute("value"));
 
 
         driver.quit();
