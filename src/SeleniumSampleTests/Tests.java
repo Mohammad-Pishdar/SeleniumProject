@@ -7,6 +7,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.Iterator;
+import java.util.Set;
+
 public class Tests {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\mohpi\\OneDrive\\Desktop\\chromedriver.exe");
@@ -42,6 +45,22 @@ public class Tests {
             System.out.println("Verify button is not displayed");
         }
 
+        //4: Check to see that popup window works
+        driver.findElement(By.xpath("/html[1]/body[1]/div[5]")).click();
+        Set<String> handler = driver.getWindowHandles();
+        Iterator <String> it = handler.iterator();
+        String parentWindowId = it.next();
+        System.out.println("Parent window id: " + parentWindowId);
+        String childWindowId = it.next();
+        System.out.println("Child window id: " + childWindowId);
+        driver.switchTo().window(childWindowId);
+        WebElement popupWindowText = driver.findElement(By.cssSelector("#popuptext"));
+        if(popupWindowText.isDisplayed()){
+            System.out.println(popupWindowText.getText());
+        } else {
+            System.out.println("Popup window text is not displayed");
+        }
+        driver.findElement(By.cssSelector("#closepopup")).click();
 
 
 
