@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class Tests {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\mohpi\\OneDrive\\Desktop\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.get("http://book.theautomatedtester.co.uk/");
@@ -19,6 +19,16 @@ public class Tests {
         String headerText = header.getText();
         String expectedHeaderText = "Selenium: Beginners Guide";
         Assert.assertEquals(headerText, expectedHeaderText);
+
+        //chapter 1 link tests
+        driver.findElement(By.linkText("Chapter1")).click();
+
+        //1: test dropdown menu by selecting an item from it
+        Select dropdown = new Select(driver.findElement(By.cssSelector("#selecttype")));
+        dropdown.selectByVisibleText("Selenium Grid");
+        dropdown.selectByVisibleText("Selenium Core");
+
+
 
         driver.quit();
 
