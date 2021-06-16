@@ -4,9 +4,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -61,6 +64,18 @@ public class Tests {
             System.out.println("Popup window text is not displayed");
         }
         driver.findElement(By.cssSelector("#closepopup")).click();
+
+        //5: Test ajax button output
+        driver.switchTo().window(parentWindowId);
+        driver.findElement(By.cssSelector("#loadajax")).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/div[9]/p[1]")));
+        WebElement ajaxText = driver.findElement(By.xpath("/html[1]/body[1]/div[9]/p[1]"));
+        if (ajaxText.isDisplayed()){
+            System.out.println("Ajax text is displayed which reads: " + ajaxText.getText());
+        } else {
+            System.out.println("Ajax text is not displayed!");
+        }
 
 
 
