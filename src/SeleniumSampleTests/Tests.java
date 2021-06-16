@@ -10,6 +10,7 @@ public class Tests {
         WebDriver driver = new ChromeDriver();
         driver.get("http://book.theautomatedtester.co.uk/");
         driver.quit();
+        //added just to test github
 
     }
 }
