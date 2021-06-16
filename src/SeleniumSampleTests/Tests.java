@@ -92,6 +92,10 @@ public class Tests {
             driver.navigate().refresh();
         }
 
+        //2: Find an element with name (a button in this case)
+        driver.findElement(By.name("but2"));
+        System.out.println("Button with a name attribute was found on Chapter2 page");
+
 
 
 
